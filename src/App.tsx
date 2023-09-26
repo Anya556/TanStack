@@ -1,17 +1,9 @@
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import todoService from './services/todo.service';
+import { useTodos } from './hooks/useTodos';
 
 function App() {
-  const { isLoading, data } = useQuery(['todos'], () => todoService.getAll(), {
-    select: ({ data }) => data,
-    onSuccess(data) {
-      alert(data[3].title)
-    },
-    onError(err) {
-      alert(err)
-    }
-  });
+  const { isLoading, data } = useTodos();
+  
   return (
     <div>
       {isLoading ? (
