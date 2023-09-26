@@ -5,6 +5,12 @@ import todoService from './services/todo.service';
 function App() {
   const { isLoading, data } = useQuery(['todos'], () => todoService.getAll(), {
     select: ({ data }) => data,
+    onSuccess(data) {
+      alert(data[3].title)
+    },
+    onError(err) {
+      alert(err)
+    }
   });
   return (
     <div>
